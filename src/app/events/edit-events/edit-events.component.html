@@ -1,0 +1,45 @@
+<ng-container *ngIf="event">
+
+    <form #editForm="ngForm" (ngSubmit)="editHandler(editForm.value)">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Edit event</h1>
+            <p>Fill up the following information!</p>
+        </div>
+
+        <div class="form-label-group">
+            <p class="error" *ngIf="name?.errors?.required && name.touched">Please enter a name for you event</p>
+            <p class="error" *ngIf="name?.errors?.minlength">Your event name should be at least 6 characters</p>
+            <input [ngModel]="event.name" #name="ngModel" type="text" id="inputEventName" name="name" class="form-control" placeholder="Event" required minlength="6">
+            <label for="inputEventName">Event</label>
+        </div>
+
+        <div class="form-label-group">
+            <p class="error" *ngIf="dateTime?.errors?.required && dateTime.touched">Please enter date for your event</p>
+            <input [ngModel]="event.dateTime" #dateTime="ngModel" type="text" id="inputEventDate" name="dateTime" class="form-control" placeholder="Date" required>
+            <label for="inputEventDate">Date</label>
+        </div>
+
+        <div class="form-label-group">
+            <p class="error" *ngIf="description?.errors?.minlength">The description for your event should be at least 10 characters</p>
+            <p class="error" *ngIf="description?.errors?.required && description.touched">Please write a description for you event</p>
+            <textarea [ngModel]='event.description' #description="ngModel" type="text" id="inputEventDescription" name="description" class="form-control" placeholder="Description" required minlength="10"></textarea>
+            <label for="inputEventDescription">Description</label>
+        </div>
+
+        <div class="form-label-group">
+            <p class="error" *ngIf="imageURL?.errors?.required && imageURL.touched">Please enter image for your event</p>
+            <input [ngModel]="event.imageURL" #imageURL="ngModel" type="text" id="inputEventImage" name="imageURL" class="form-control" placeholder="Image" required>
+            <label for="inputEventImage">Image</label>
+        </div>
+
+        <input [ngModel]="event.peopleInterestedIn" #peopleInterestedIn="ngModel" type="number" name="peopleInterestedIn" style="display: none;">
+        <input [ngModel]="event.organizer" #organizer="ngModel" type="text" name="organizer" style="display: none;">
+
+
+        <button class="btn btn-lg btn-dark btn-block" [disabled]="editForm.invalid">Edit it</button>
+
+        <p class="mt-5 mb-3 text-muted text-center">© UniEnt - 2019.</p>
+
+    </form>
+
+</ng-container>

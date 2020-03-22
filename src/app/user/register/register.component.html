@@ -1,0 +1,41 @@
+<form [formGroup]="registerForm" (ngSubmit)="registerHandler(registerForm.value)">
+
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">Sign-Up</h1>
+        <p>Register yourself once and create/join awesome events!</p>
+    </div>
+
+    <div class="form-label-group">
+        <p class="error" *ngIf="registerForm.get('username')?.errors?.required && registerForm.get('username')?.touched">Please enter user name</p>
+        <p class="error" *ngIf="registerForm.get('username')?.errors?.minlength">User name should be at least 3 characters</p>
+        <input formControlName="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="">
+        <label for="inputUsername">Username</label>
+    </div>
+
+    <div formGroupName="passwords">
+        <div class="form-label-group">
+            <p class="error" *ngIf="registerForm.get('passwords.password')?.errors?.required && registerForm.get('passwords.password').touched">Please enter password</p>
+            <p class="error" *ngIf="registerForm.get('passwords.password')?.errors?.minlength">Password should be at least 6 characters</p>
+            <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <label for="inputPassword">Password</label>
+        </div>
+
+        <div class="form-label-group">
+            <p class="error" *ngIf="registerForm.get('passwords.rePassword')?.errors?.required && registerForm.get('passwords.rePassword').touched">Please enter your password again</p>
+            <input formControlName="rePassword" type="password" id="inputRePassword" class="form-control" placeholder="Re-Password" required="">
+            <label for="inputRePassword">Re-Password</label>
+        </div>
+        <p class="error" *ngIf="registerForm.get('passwords')?.errors?.passwordMatch">Passwords should be the same</p>
+    </div>
+
+    <button class="btn btn-lg btn-dark btn-block" [disabled]="registerForm.invalid">Sign Up</button>
+
+    <div class="text-center mb-4">
+        <p class="alreadyUser"> Already have account? Then just
+            <a routerLink="/login">Sign-In</a>!
+        </p>
+    </div>
+
+    <p class="mt-5 mb-3 text-muted text-center">© UniEnt - 2019.</p>
+
+</form>

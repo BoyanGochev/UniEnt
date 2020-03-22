@@ -1,0 +1,13 @@
+button {
+    margin: 0 auto;
+    width: 25%;
+}
+
+.error {
+    text-align: center;
+    color: red;
+}
+
+input.ng-invalid.ng-touched {
+    border-color: red;
+}

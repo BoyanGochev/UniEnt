@@ -1,0 +1,18 @@
+<ng-container *ngIf="myEvents">
+    <div class="col-md-6 text-center col-lg">
+        <img class="profile-img" src="../../../assets/user.png" />
+        <div class="profile-info">
+            <p>Username: <small>{{username}}</small></p>
+            <p *ngIf="myEvents.length > 0" class="infoType">Organizer of {{myEvents.length}} events.</p>
+            <div *ngIf="myEvents.length > 0">
+                <div *ngFor="let e of myEvents">
+                    <a routerLink="/details/{{e._id}}">{{e.name}}</a>
+                </div>
+            </div>
+            <div *ngIf="myEvents.length === 0">
+                <p>No events</p>
+            </div>
+
+        </div>
+    </div>
+</ng-container>
